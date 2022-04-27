@@ -1,4 +1,4 @@
-import { IStatusState, StatusActionTypes } from "../../types/status";
+import { StatusActionTypes } from "../../types/status";
 
 export const changeStatusAction = (payload: string) => ({
   type: StatusActionTypes.CHANGE_STATUS,

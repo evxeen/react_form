@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.scss";
 import { Wrapper } from "./components/Wrapper/Wrapper";
 import { Header } from "./components/Header/Header";
@@ -7,7 +8,6 @@ import { Field } from "./components/Field/Field";
 import { FieldsWrap } from "./components/FieldWrap/FieldsWrap";
 
 const App = () => {
-  const cities = ["lala", "baba", "jojo", "wowq"];
   const universities = ["BGU", "NGTL", "QWSDD", ":FKFO"];
 
   const [city, setCity] = useState("");
@@ -16,6 +16,13 @@ const App = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
   const [agreement, setAgreement] = useState("");
+
+  const dispatch = useDispatch();
+  const { cities } = useSelector((state: any) => state.cities);
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_CITIES" });
+  }, []);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,7 +54,7 @@ const App = () => {
             onChange={(e) => setCity(e.target.value)}
           />
           <Field
-            label="Ваш город"
+            label="Ваш университет"
             type="select"
             name="university"
             className="field__input"

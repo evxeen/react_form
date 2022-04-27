@@ -1,5 +1,5 @@
 export interface IStatusState {
-  status: string | number;
+  status: string;
   edited: boolean;
 }
 

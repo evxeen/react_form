@@ -6,10 +6,9 @@ import {
   changeStatusAction,
   showFieldAction,
 } from "../../store/actions/statusActions";
-import { IStatusState } from "../../types/status";
 
 export const Header: FC = () => {
-  const { status, edited } = useSelector((state: IStatusState) => state);
+  const { status, edited } = useSelector((state: any) => state.status);
   const dispatch = useDispatch();
 
   const inputRef = useRef<HTMLInputElement>(null);

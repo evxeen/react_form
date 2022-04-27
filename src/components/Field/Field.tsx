@@ -1,11 +1,18 @@
 import React, { FC } from "react";
 import "./Field.scss";
 
+type InputTypes =
+  | "submit"
+  | "text"
+  | "password"
+  | "email"
+  | "checkbox"
+  | "select";
+
 interface Field {
   label?: string;
-  type: string;
+  type: InputTypes;
   name: string;
-  id: string;
   hint?: string;
   select?: string[];
   className?: string;
@@ -20,7 +27,6 @@ export const Field: FC<Field> = ({
   label,
   type,
   name,
-  id,
   hint,
   select,
   className,
@@ -30,7 +36,7 @@ export const Field: FC<Field> = ({
     <div className="field">
       <p className="field__text">{label}</p>
       {select ? (
-        <select className={className} name={name} id={id} onChange={onChange}>
+        <select className={className} name={name} onChange={onChange}>
           {select.map((opt) => (
             <option key={opt} value={opt}>
               {opt}
@@ -42,7 +48,6 @@ export const Field: FC<Field> = ({
           className={className}
           type={type}
           name={name}
-          id={id}
           onChange={onChange}
         />
       )}
@@ -56,28 +61,3 @@ export const Field: FC<Field> = ({
     </div>
   );
 };
-
-// {selects && (
-//     <select className="field__input" name="select">
-//       {selects.map((opt) => (
-//         <option key={opt} value={opt}>
-//           {opt}
-//         </option>
-//       ))}
-//     </select>
-//   )}
-
-// {name === "password" ? (
-//   <input name={name} className="field__input" type={name} />
-// ) : (
-//   <input name={name} className="field__input" type={name} />
-// )}
-
-// {label && (
-//   <>
-//     <input type="checkbox" className="filed__checkbox" />
-//     <span className="field__label">{label}</span>
-//   </>
-// )}
-
-// <button>отпраить</button>

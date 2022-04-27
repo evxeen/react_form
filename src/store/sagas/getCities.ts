@@ -1,4 +1,6 @@
 import { takeEvery, put, call } from "redux-saga/effects";
+import { CitiesActionTypes } from "../../types/cities";
+import { setCitiesAction } from "../actions/citiesAction";
 
 const axios = require("axios").default;
 
@@ -9,13 +11,12 @@ function* workerSaga() {
   const filteredCities = data
     .filter((city: any) => city.population > 50000)
     .map((city: any) => city.city);
-  console.log(filteredCities);
 
-  yield put({ type: "SET_CITIES", payload: filteredCities });
+  yield put(setCitiesAction(filteredCities));
 }
 
 function* watchClickSaga() {
-  yield takeEvery("FETCH_CITIES", workerSaga);
+  yield takeEvery(CitiesActionTypes.FETCH_CITIES, workerSaga);
 }
 
 export function* rootSaga() {

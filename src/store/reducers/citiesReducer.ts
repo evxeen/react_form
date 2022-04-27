@@ -1,4 +1,8 @@
-import { ICitiesState, CitiesAction } from "../../types/cities";
+import {
+  CitiesAction,
+  CitiesActionTypes,
+  ICitiesState,
+} from "../../types/cities";
 
 export const initialState: ICitiesState = {
   cities: [],
@@ -9,7 +13,7 @@ export const citiesReducer = (
   action: CitiesAction
 ): ICitiesState => {
   switch (action.type) {
-    case "SET_CITIES":
+    case CitiesActionTypes.SET_CITIES:
       return { ...state, cities: action.payload };
     default:
       return state;

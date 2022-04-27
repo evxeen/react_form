@@ -6,6 +6,7 @@ import { Header } from "./components/Header/Header";
 import { Separator } from "./components/Separator/Separator";
 import { Field } from "./components/Field/Field";
 import { FieldsWrap } from "./components/FieldWrap/FieldsWrap";
+import { fetchCities } from "./store/actions/citiesAction";
 
 const App = () => {
   const universities = ["BGU", "NGTL", "QWSDD", ":FKFO"];
@@ -21,7 +22,7 @@ const App = () => {
   const { cities } = useSelector((state: any) => state.cities);
 
   useEffect(() => {
-    dispatch({ type: "FETCH_CITIES" });
+    dispatch(fetchCities());
   }, []);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {

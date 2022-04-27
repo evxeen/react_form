@@ -1,11 +1,12 @@
 import React, { ChangeEvent, FC, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "./Header.scss";
 
 import {
   changeStatusAction,
   showFieldAction,
-} from "../store/actions/statusActions";
-import { IStatusState } from "../types/status";
+} from "../../store/actions/statusActions";
+import { IStatusState } from "../../types/status";
 
 export const Header: FC = () => {
   const { status, edited } = useSelector((state: IStatusState) => state);
@@ -29,8 +30,8 @@ export const Header: FC = () => {
 
   return (
     <div className="header">
-      <h1 className="title">
-        Здравствуйте, <span>Человек №3596941</span>
+      <h1 className="header__title">
+        Здравствуйте, <span className="header__person">Человек №3596941</span>
       </h1>
 
       <button onClick={editStatus} className="header__button">

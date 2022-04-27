@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import "./Wpapper.scss";
 
 interface WrapperProps {
   children: React.ReactNode;

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import "./FieldWrap.scss";
 
 interface FieldsWrapProps {
   children: React.ReactNode;

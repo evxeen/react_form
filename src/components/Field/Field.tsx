@@ -21,6 +21,7 @@ interface Field {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
   ) => void;
+  errorMessage?: string;
 }
 
 export const Field: FC<Field> = ({
@@ -31,33 +32,58 @@ export const Field: FC<Field> = ({
   select,
   className,
   onChange,
+  errorMessage,
 }: Field) => {
   return (
     <div className="field">
-      <p className="field__text">{label}</p>
-      {select ? (
-        <select className={className} name={name} onChange={onChange}>
-          {select.map((opt) => (
-            <option key={opt} value={opt}>
-              {opt}
-            </option>
-          ))}
-        </select>
-      ) : (
-        <input
-          className={className}
-          type={type}
-          name={name}
-          onChange={onChange}
-        />
-      )}
-      {className === "field__checkbox" && (
-        <span className="field__label">
-          принимать актуальную информацию на емейл
-        </span>
+      <div className="field__text">{label}</div>
+
+      <div className="field__input-block">
+        {select && (
+          <select className={className} name={name} onChange={onChange}>
+            {select.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
+          </select>
+        )}
+
+        {!select && (
+          <>
+            <input
+              className={`${className} ${
+                errorMessage ? "field__input_error" : ""
+              }`}
+              type={type}
+              name={name}
+              onChange={onChange}
+            />
+            {/*<div*/}
+            {/*  className="field__error-text"*/}
+            {/*  style={{ color: "red", fontSize: "12px" }}*/}
+            {/*>*/}
+            {/*  {errorMessage && errorMessage}*/}
+            {/*</div>*/}
+          </>
+        )}
+      </div>
+
+      {hint && (
+        <div
+          className={
+            type === "checkbox" ? "field__hint field__hint_bold" : "field__hint"
+          }
+        >
+          {hint ? `${hint}` : null}
+        </div>
       )}
 
-      <div className="field__hint">{hint ? `${hint}` : null}</div>
+      {/*{className === "field__checkbox" && (*/}
+      {/*  <span className="field__label">*/}
+      {/*    принимать актуальную информацию на емейл*/}
+      {/*  </span>*/}
+      {/*)}*/}
     </div>
   );
 };

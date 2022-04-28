@@ -16,20 +16,41 @@ const App = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
   const [agreement, setAgreement] = useState("");
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   const { cities } = useSelector((state: any) => state.cities);
   const { universities } = useSelector((state: any) => state.universities);
-
-  console.log(universities);
 
   useEffect(() => {
     dispatch(fetchCities());
     dispatch(fetchUniversities());
   }, []);
 
+  console.log(error);
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!password.length) {
+      setError("Укажите пароль");
+      return;
+    }
+
+    if (password !== passwordConfirm) {
+      setError("Пароли не совпадают");
+      return;
+    }
+    if (password.length < 5) {
+      setError("Используйте не менее 5 символов");
+      return;
+    }
+
+    if (!email.length) {
+      setError("Укажите E-mail");
+
+      return;
+    }
+
     console.log(
       JSON.stringify({
         city: city,
@@ -76,6 +97,7 @@ const App = () => {
             name="password"
             className="field__input"
             hint="Ваш новый пароль должен содержать не менее 5 символов."
+            errorMessage={error}
             onChange={(e) => setPassword(e.target.value)}
           />
           <Field
@@ -85,6 +107,7 @@ const App = () => {
             className="field__input"
             hint="Повторите пароль, пожалуйста, это обезопасит вас с нами
 на случай ошибки."
+            errorMessage={error}
             onChange={(e) => setPasswordConfirm(e.target.value)}
           />
         </FieldsWrap>
@@ -99,18 +122,20 @@ const App = () => {
             className="field__input"
             hint="Можно изменить адрес, указанный при регистрации. "
             onChange={(e) => setEmail(e.target.value)}
+            errorMessage={error}
           />
           <Field
             label="Я согласен"
             type="checkbox"
             name="agreement"
             className="field__checkbox"
+            hint="принимать актуальную информацию на емейл"
             onChange={(e) => setAgreement(e.target.value)}
           />
           <Field
             type="submit"
             name="buttonSubmit"
-            className="save-changes__button"
+            className="field__button"
             hint="последние изменения 15 мая 2012 в 14:55:17"
           />
         </FieldsWrap>

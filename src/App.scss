@@ -8,29 +8,5 @@
 .save-changes {
   text-align: center;
   
-  &__button {
-    background-color: #71C838;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    color: #FFFFFF;
-    padding: 10px 17px;
-    border: none;
-    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 1px 0px #539D22;
-    margin-right: 18px;
 
-
-    &:hover {
-      background: #539D22;
-    }
-  }
-
-  &__text {
-    margin-left: 12px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    color: #999999;
-  }
 }

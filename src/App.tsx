@@ -7,10 +7,9 @@ import { Separator } from "./components/Separator/Separator";
 import { Field } from "./components/Field/Field";
 import { FieldsWrap } from "./components/FieldWrap/FieldsWrap";
 import { fetchCities } from "./store/actions/citiesAction";
+import { fetchUniversities } from "./store/actions/universitiesAction";
 
 const App = () => {
-  const universities = ["BGU", "NGTL", "QWSDD", ":FKFO"];
-
   const [city, setCity] = useState("");
   const [university, setUniversity] = useState("");
   const [password, setPassword] = useState("");
@@ -20,9 +19,13 @@ const App = () => {
 
   const dispatch = useDispatch();
   const { cities } = useSelector((state: any) => state.cities);
+  const { universities } = useSelector((state: any) => state.universities);
+
+  console.log(universities);
 
   useEffect(() => {
     dispatch(fetchCities());
+    dispatch(fetchUniversities());
   }, []);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {

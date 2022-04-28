@@ -6,19 +6,24 @@ const axios = require("axios").default;
 
 const fetchCitiesFromJson = () => axios.get("cities.json");
 
-function* workerSaga() {
+function* citiesWorker() {
   const { data } = yield call(fetchCitiesFromJson);
-  const filteredCities = data
+
+  const sortedCities = data
     .filter((city: any) => city.population > 50000)
-    .map((city: any) => city.city);
+    .sort((a: any, b: any) => (a.city > b.city ? 1 : -1));
 
-  yield put(setCitiesAction(filteredCities));
+  const largestPopulation = sortedCities.reduce((acc: any, curr: any) =>
+    +acc.population > +curr.population ? acc : curr
+  );
+
+  const finalArray: any = Array.from(
+    new Set([largestPopulation, ...sortedCities])
+  ).map((city: any) => city.city);
+
+  yield put(setCitiesAction(finalArray));
 }
 
-function* watchClickSaga() {
-  yield takeEvery(CitiesActionTypes.FETCH_CITIES, workerSaga);
-}
-
-export function* rootSaga() {
-  yield watchClickSaga();
+export function* citiesWatcher() {
+  yield takeEvery(CitiesActionTypes.FETCH_CITIES, citiesWorker);
 }

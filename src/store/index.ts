@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { statusReducer } from "./reducers/statusReducer";
 import createSagaMiddleware from "redux-saga";
-import { rootSaga } from "./sagas/getCities";
 import { citiesReducer } from "./reducers/citiesReducer";
+import { universitiesReducer } from "./reducers/universitiesReducer";
+import { rootWatcher } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,6 +18,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   status: statusReducer,
   cities: citiesReducer,
+  universities: universitiesReducer,
 });
 
 export const store = createStore(
@@ -24,4 +26,4 @@ export const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootWatcher);

@@ -1,0 +1,15 @@
+.field__hint {
+  width: 350px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: #999999;
+
+  &__hint_bold {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+  }
+}
+

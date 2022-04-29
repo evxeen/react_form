@@ -4,6 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import { citiesReducer } from "./reducers/citiesReducer";
 import { universitiesReducer } from "./reducers/universitiesReducer";
 import { rootWatcher } from "./sagas";
+import { formReducer } from "./reducers/formReducer";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   status: statusReducer,
   cities: citiesReducer,
   universities: universitiesReducer,
+  form: formReducer,
 });
 
 export const store = createStore(

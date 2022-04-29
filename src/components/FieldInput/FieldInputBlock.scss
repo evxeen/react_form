@@ -1,0 +1,35 @@
+.field__input-block {
+  margin-right: 18px;
+}
+
+.field__input {
+  width: 335px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+  padding: 6px 12px;
+  left: 235px;
+
+}
+
+.checkbox {
+  width: 12px;
+}
+
+.button {
+  width: 120px;
+  background-color: #71C838;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #FFFFFF;
+  padding: 10px 17px;
+  border: none;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 0px #539D22;
+
+
+  &:hover {
+    background: #539D22;
+  }
+}

@@ -5,9 +5,9 @@ export interface IFormState {
   passwordConfirm: string;
   email: string;
   agreement: string;
-  minLength: number;
-  matching: boolean;
-  valid: boolean;
+  errorPassword: string;
+  errorPasswordConfirm: string;
+  errorEmail: string;
 }
 
 const initialState: IFormState = {
@@ -17,9 +17,9 @@ const initialState: IFormState = {
   passwordConfirm: "",
   email: "",
   agreement: "",
-  minLength: 5,
-  matching: false,
-  valid: false,
+  errorPassword: "",
+  errorPasswordConfirm: "",
+  errorEmail: "",
 };
 
 export const formReducer = (state = initialState, action: any) => {
@@ -36,8 +36,12 @@ export const formReducer = (state = initialState, action: any) => {
       return { ...state, email: action.payload };
     case "SET_AGREEMENT":
       return { ...state, agreement: action.payload };
-    case "SET_VALID":
-      return { ...state, valid: true };
+    case "SET_ERROR_PASSWORD":
+      return { ...state, errorPassword: action.payload };
+    case "SET_ERROR_PASSWORDCONFIRM":
+      return { ...state, errorPasswordConfirm: action.payload };
+    case "SET_ERROR_EMAIL":
+      return { ...state, errorEmail: action.payload };
     default:
       return state;
   }

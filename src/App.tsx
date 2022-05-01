@@ -32,6 +32,7 @@ const UseInput = (initialValue: string, validations: object) => {
   const [value, setValue] = useState(initialValue);
   const [isDirty, setDirty] = useState(false);
   const valid = UseValidation(value, validations);
+
   const onBlur = (e: any) => {
     setDirty(true);
   };

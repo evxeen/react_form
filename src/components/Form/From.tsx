@@ -13,8 +13,7 @@ import { FieldInput } from "../FieldInput/FieldInput";
 import { FieldCheckbox } from "../FiledCheckbox/FieldCheckbox";
 import { Button } from "../Button/Button";
 
-interface FormProps {}
-export const Form: FC<FormProps> = () => {
+export const Form: FC = () => {
   const dispatch = useDispatch();
   const { cities } = useSelector((state: any) => state.cities);
   const { universities } = useSelector((state: any) => state.universities);
@@ -135,7 +134,7 @@ export const Form: FC<FormProps> = () => {
         </Field>
         <Field>
           <FieldText text="Я согласен" />
-          <FieldCheckbox />
+          <FieldCheckbox name="agreement" onChange={changeInputHandler} />
         </Field>
         <Field>
           <FieldText />

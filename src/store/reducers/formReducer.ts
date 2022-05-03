@@ -1,14 +1,4 @@
-export interface IFormState {
-  city: string;
-  university: string;
-  password: string;
-  passwordConfirm: string;
-  email: string;
-  agreement: string;
-  errorPassword: string;
-  errorPasswordConfirm: string;
-  errorEmail: string;
-}
+import { IFormState, ISetFormActions, FormActionTypes } from "../../types/form";
 
 const initialState: IFormState = {
   city: "",
@@ -22,25 +12,28 @@ const initialState: IFormState = {
   errorEmail: "",
 };
 
-export const formReducer = (state = initialState, action: any) => {
+export const formReducer = (
+  state = initialState,
+  action: ISetFormActions
+): IFormState => {
   switch (action.type) {
-    case "SET_CITY":
+    case FormActionTypes.SET_CITY:
       return { ...state, city: action.payload };
-    case "SET_UNIVERSITY":
+    case FormActionTypes.SET_UNIVERSITY:
       return { ...state, university: action.payload };
-    case "SET_PASSWORD":
+    case FormActionTypes.SET_PASSWORD:
       return { ...state, password: action.payload };
-    case "SET_PASSWORDCONFIRM":
+    case FormActionTypes.SET_PASSWORDCONFIRM:
       return { ...state, passwordConfirm: action.payload };
-    case "SET_EMAIL":
+    case FormActionTypes.SET_EMAIL:
       return { ...state, email: action.payload };
-    case "SET_AGREEMENT":
+    case FormActionTypes.SET_AGREEMENT:
       return { ...state, agreement: action.payload };
-    case "SET_ERROR_PASSWORD":
+    case FormActionTypes.SET_ERROR_PASSWORD:
       return { ...state, errorPassword: action.payload };
-    case "SET_ERROR_PASSWORDCONFIRM":
+    case FormActionTypes.SET_ERROR_PASSWORDCONFIRM:
       return { ...state, errorPasswordConfirm: action.payload };
-    case "SET_ERROR_EMAIL":
+    case FormActionTypes.SET_ERROR_EMAIL:
       return { ...state, errorEmail: action.payload };
     default:
       return state;

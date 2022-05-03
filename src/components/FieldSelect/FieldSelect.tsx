@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
 
 interface FieldSelectProps {
   data?: string[];

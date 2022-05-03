@@ -21,7 +21,6 @@ export const FieldInput: FC<FieldInputProps> = ({
   const { errorPassword, errorPasswordConfirm, errorEmail } = useSelector(
     (state: any) => state.form
   );
-  console.log(errorPassword, errorPasswordConfirm, errorEmail);
 
   return (
     <div className="field__input-block">
@@ -32,12 +31,16 @@ export const FieldInput: FC<FieldInputProps> = ({
         onChange={onChange}
       />
       {name === "password" && (
-        <div style={{ color: "red" }}>{errorPassword}</div>
+        <div style={{ color: "red", fontSize: "12px" }}>{errorPassword}</div>
       )}
       {name === "passwordConfirm" && (
-        <div style={{ color: "red" }}>{errorPasswordConfirm}</div>
+        <div style={{ color: "red", fontSize: "12px" }}>
+          {errorPasswordConfirm}
+        </div>
       )}
-      {name === "email" && <div style={{ color: "red" }}>{errorEmail}</div>}
+      {name === "email" && (
+        <div style={{ color: "red", fontSize: "12px" }}>{errorEmail}</div>
+      )}
     </div>
   );
 };
